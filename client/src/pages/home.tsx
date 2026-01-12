@@ -25,11 +25,11 @@ const navLinks = [
 const personalInfo = {
   name: "Harshit Shah",
   title: "Quantitative Analyst & Data Scientist",
-  email: "your.email@example.com", // EDIT: Your email address
-  phone: "+1234567890", // EDIT: Your phone number (for tel: link)
-  whatsapp: "1234567890", // EDIT: Your WhatsApp number (without + or spaces)
-  linkedin: "https://linkedin.com/in/yourprofile", // EDIT: Your LinkedIn URL
-  github: "https://github.com/yourusername", // EDIT: Your GitHub URL
+  email: "harshitshah.work@gmail.com", // EDIT: Your email address
+  phone: "+919978645603", // EDIT: Your phone number (for tel: link)
+  whatsapp: "9978645603", // EDIT: Your WhatsApp number (without + or spaces)
+  linkedin: "https://linkedin.com/in/harshitvshah", // EDIT: Your LinkedIn URL
+  github: "https://github.com/Harshit-0307", // EDIT: Your GitHub URL
   resumeUrl: "/resume.pdf", // EDIT: Path to your resume PDF
 };
 
