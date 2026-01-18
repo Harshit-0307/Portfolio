@@ -16,9 +16,9 @@ function Router() {
   );
 }
 
-function App() {
+export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
@@ -28,5 +28,3 @@ function App() {
     </ThemeProvider>
   );
 }
-
-export default App;
