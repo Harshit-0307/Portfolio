@@ -337,7 +337,7 @@ export default function Home() {
 
       <footer className="py-16 border-t border-border bg-muted/20 text-center">
         <p className="text-muted-foreground text-[10px] font-black tracking-[0.3em] uppercase">
-          © {new Date().getFullYear()} {personalInfo.name} // SECURE_HANDSHAKE_COMPLETE
+          © {new Date().getFullYear()} {personalInfo.name} // ALL RIGHTS RESERVED®
         </p>
       </footer>
     </div>
