@@ -26,9 +26,9 @@ const skills = [
   { icon: TrendingUp, name: "Financial Modeling", desc: "DCF, Monte Carlo, VaR" },
   { icon: BarChart3, name: "Statistical Analysis", desc: "Regression, Time Series" },
   { icon: Brain, name: "Machine Learning", desc: "Deep Learning, NLP" },
-  { icon: Database, name: "Data Engineering", desc: "SQL, ETL Pipelines" },
+  { icon: Database, name: "Data Science", desc: "SQL, ETL Pipelines" },
   { icon: Code2, name: "Programming", desc: "Python, R, C++" },
-  { icon: LineChart, name: "Visualization", desc: "Plotly, D3.js" },
+  { icon: LineChart, name: "Visualization", desc: "Tableau, PowerBI" },
 ];
 
 const projects = [
