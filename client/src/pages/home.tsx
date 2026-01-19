@@ -131,7 +131,7 @@ function TradingViewTicker() {
 
 function Hero() {
   const [subText, setSubText] = useState("");
-  const fullSubText = "SYSTEM_STATUS: EXECUTING_ALPHA_STRATEGIES";
+  const fullSubText = "EXECUTING_ALPHA_STRATEGIES";
   
   useEffect(() => {
     let i = 0;
