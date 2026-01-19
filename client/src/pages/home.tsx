@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { 
   Github, Linkedin, Mail, MessageCircle, 
   Sun, Moon, Download, User, 
-  TrendingUp, BarChart3, Brain, Database, Code2, LineChart
+  TrendingUp, BarChart3, Brain, Database, Code2, LineChart,
+  ArrowRight, ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,20 +15,12 @@ const personalInfo = {
   title: "Quantitative Analyst & Data Scientist",
   email: "harshitshah.work@gmail.com",
   phone: "+919978645603",
-  whatsapp: "9978645603",
+  whatsapp: "+919978645603",
   linkedin: "https://linkedin.com/in/harshitvshah",
   github: "https://github.com/Harshit-0307",
   resumeUrl: "/resume.pdf",
   profileImg: "https://github.com/Harshit-0307.png" 
 };
-
-const indianStocks = [
-  { symbol: "NIFTY 50", price: 24847.50, change: 1.24 },
-  { symbol: "SENSEX", price: 81821.12, change: 0.98 },
-  { symbol: "RELIANCE", price: 2934.25, change: 2.15 },
-  { symbol: "TCS", price: 4123.80, change: -0.42 },
-  { symbol: "HDFC BANK", price: 1756.40, change: 1.67 },
-];
 
 const skills = [
   { icon: TrendingUp, name: "Financial Modeling", desc: "DCF, Monte Carlo, VaR" },
@@ -40,46 +33,99 @@ const skills = [
 
 const projects = [
   {
-    title: "Portfolio Optimization Engine",
-    description: "Built a mean-variance optimization model with Monte Carlo simulation for risk assessment.",
-    methods: ["Optimization", "Monte Carlo", "Sharpe Ratio"],
-    github: "https://github.com/Harshit-0307",
-    demo: "#",
+    title: "Pairs Trading Framework",
+    description: "A comprehensive backtesting engine for statistical arbitrage that achieved an 18.02% annualized return using cointegration and Z-score signals.",
+    methods: ["Stats Arb", "Cointegration", "Backtesting"],
+    github: "https://github.com/Harshit-0307/QuantLab", // Updated to specific repo
   },
   {
-    title: "Algorithmic Trading System",
-    description: "Developed a high-frequency trading system with real-time market data processing.",
-    methods: ["Stat Arb", "Time Series", "Real-time"],
-    github: "https://github.com/Harshit-0307",
-    demo: null,
+    title: "QuantLab: Strategy Research",
+    description: "Integrated environment for time series forecasting (ARIMA), factor models (Fama-French), and risk-parity optimization.",
+    methods: ["ARIMA", "Fama-French", "Python"],
+    github: "https://github.com/Harshit-0307/QuantLab", // Updated to specific repo
+  },
+  {
+    title: "Portfolio Optimization Engine",
+    description: "Built a mean-variance optimization model with Monte Carlo simulation for risk assessment and Sharpe Ratio maximization.",
+    methods: ["Optimization", "Monte Carlo", "Risk MGMT"],
+    github: "https://github.com/Harshit-0307", // Replace with specific URL
+  },
+  {
+    title: "HFT Data Pipeline",
+    description: "ETL pipelines designed for high-frequency tick data processing and real-time feature engineering.",
+    methods: ["SQL", "ETL", "Real-time"],
+    github: "https://github.com/Harshit-0307", // Replace with specific URL
   }
 ];
 
 const blogPosts = [
   {
-    title: "Understanding GARCH Models for Volatility Forecasting",
-    excerpt: "A deep dive into GARCH models and their applications in financial markets.",
-    date: "Dec 15, 2024",
+    title: "Volatility Forecasting with GARCH Models",
+    excerpt: "Implementing Generalized Autoregressive Conditional Heteroskedasticity models to predict market risk and set dynamic stop-losses.",
+    date: "Jan 12, 2026",
+    readTime: "6 min read",
+    tag: "Time Series",
+    url: "#" // Add your blog link here
+  },
+  {
+    title: "Machine Learning in HFT Environments",
+    excerpt: "Exploring low-latency feature engineering and the trade-offs between model complexity and execution speed in high-frequency trading.",
+    date: "Jan 05, 2026",
+    readTime: "10 min read",
+    tag: "ML / HFT",
+    url: "#" // Add your blog link here
+  },
+  {
+    title: "Modern Portfolio Theory vs. Black-Litterman",
+    excerpt: "A comparison of asset allocation frameworks and how to incorporate subjective market views into quantitative optimization.",
+    date: "Dec 28, 2025",
     readTime: "8 min read",
-    url: "#",
+    tag: "Portfolio MGMT",
+    url: "#" // Add your blog link here
+  },
+  {
+    title: "The Role of Factor Models in Alpha Generation",
+    excerpt: "Decomposing returns using Fama-French factors to identify true alpha versus market beta in systematic strategies.",
+    date: "Dec 15, 2025",
+    readTime: "7 min read",
+    tag: "Alpha Research",
+    url: "#" // Add your blog link here
   }
 ];
 
-function StockTicker() {
+function TradingViewTicker() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scriptId = "tradingview-widget-script";
+    let script = document.getElementById(scriptId) as HTMLScriptElement;
+    
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js";
+      script.type = "module";
+      script.async = true;
+    }
+
+    const ticker = document.createElement("tv-ticker-tape");
+    ticker.setAttribute("symbols", "BSE:SENSEX,BSE:RELIANCE,OANDA:XAUUSD,BSE:SUNCLAY,FX_IDC:USDINR,BSE:TRENT,BSE:PRECAM,BSE:TATACAP,BSE:TCS,BSE:HDFCBANK,BSE:HDBFS,BSE:EICHERMOT,BSE:ADANIPOWER,BSE:ATGL");
+    ticker.setAttribute("colorTheme", "dark");
+    ticker.setAttribute("isTransparent", "true");
+
+    if (containerRef.current) {
+      containerRef.current.innerHTML = "";
+      containerRef.current.appendChild(script);
+      containerRef.current.appendChild(ticker);
+    }
+
+    return () => {
+      if (containerRef.current) containerRef.current.innerHTML = "";
+    };
+  }, []);
+
   return (
-    <div className="border-b border-border bg-background py-2 font-mono text-[10px] overflow-hidden">
-      <div className="flex animate-ticker whitespace-nowrap">
-        {[...indianStocks, ...indianStocks].map((stock, i) => (
-          <div key={i} className="flex gap-4 px-10 items-center">
-            <span className="font-bold tracking-tighter">{stock.symbol}</span>
-            <span className="text-muted-foreground">₹{stock.price.toLocaleString('en-IN')}</span>
-            <span className={stock.change >= 0 ? "text-blue-500 font-bold" : "text-red-500 font-bold"}>
-              {stock.change >= 0 ? "▲" : "▼"} {Math.abs(stock.change).toFixed(2)}%
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
+    <div className="border-b border-border bg-background min-h-[46px]" ref={containerRef}></div>
   );
 }
 
@@ -93,7 +139,7 @@ function Hero() {
       setSubText(fullSubText.slice(0, i));
       i++;
       if (i > fullSubText.length) clearInterval(interval);
-    }, 60);
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
@@ -146,7 +192,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
-      <StockTicker />
+      <TradingViewTicker />
       
       <nav className="border-b border-border bg-background/90 backdrop-blur-xl sticky top-0 z-50 px-6 py-5 flex justify-between items-center">
         <button 
@@ -209,7 +255,7 @@ export default function Home() {
                   </div>
                   <div className="flex gap-4">
                     <Button variant="outline" size="sm" className="rounded-none border-primary text-primary hover:bg-primary hover:text-white font-bold" asChild>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer"><Github size={14} className="mr-2"/> VIEW_SOURCE</a>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer"><Github size={14} className="mr-2"/> VIEW_REPO</a>
                     </Button>
                   </div>
                 </CardContent>
@@ -218,8 +264,46 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Blog/Insights Section */}
+        <section id="blog" className="py-24 px-6 md:px-20 max-w-7xl mx-auto border-t border-border bg-muted/5">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+            <div>
+              <p className="text-primary font-mono text-xs mb-2 tracking-widest uppercase">Research & Analysis</p>
+              <h2 className="text-4xl font-black tracking-tighter">TECHNICAL_INSIGHTS</h2>
+            </div>
+            <Button variant="link" className="text-muted-foreground hover:text-primary p-0 h-auto font-bold tracking-widest text-xs">
+              VIEW_ALL_ARTICLES <ArrowRight size={14} className="ml-2" />
+            </Button>
+          </div>
+          
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {blogPosts.map((post) => (
+              <a key={post.title} href={post.url} className="block group">
+                <Card className="h-full bg-background border-border rounded-none group-hover:border-primary transition-all flex flex-col shadow-sm">
+                  <CardHeader>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-[10px] font-bold text-primary tracking-widest uppercase bg-primary/10 px-2 py-1">{post.tag}</span>
+                      <span className="text-[10px] text-muted-foreground font-mono">{post.date}</span>
+                    </div>
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">{post.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <p className="text-xs text-muted-foreground mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
+                    <div className="flex justify-between items-center mt-auto pt-4 border-t border-border/50">
+                      <span className="text-[10px] text-muted-foreground font-mono italic">{post.readTime}</span>
+                      <div className="text-[10px] font-black tracking-widest uppercase group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                        READ_LOG <ExternalLink size={10} />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section id="contact" className="py-24 px-6 md:px-20 max-w-5xl mx-auto border-t border-border mt-20">
+        <section id="contact" className="py-24 px-6 md:px-20 max-w-5xl mx-auto border-t border-border">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black tracking-tighter mb-4">LET'S_COLLABORATE</h2>
             <p className="text-muted-foreground font-mono">AVAILABLE_FOR_QUANTITATIVE_CONSULTING</p>
