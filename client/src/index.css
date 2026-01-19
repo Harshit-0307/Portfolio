@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-primary: hsl(var(--primary));
@@ -20,41 +20,43 @@
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
   
-  --background: 0 0% 98%;
-  --foreground: 240 10% 4%;
+  /* Light Mode: Clean Professional Slate */
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
   --card: 0 0% 100%;
-  --primary: 142 70% 45%; 
-  --accent: 142 70% 45%;
-  --muted: 240 5% 90%;
-  --muted-foreground: 240 5% 40%;
-  --border: 240 5% 85%;
+  --primary: 221 83% 53%; /* Professional Blue */
+  --accent: 221 83% 53%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --border: 214 32% 91%;
 }
 
 .dark {
-  --background: 240 10% 4%;
-  --foreground: 0 0% 95%;
-  --card: 240 10% 6%;
-  --primary: 142 100% 50%; 
-  --accent: 142 100% 50%;
-  --muted: 240 5% 15%;
-  --muted-foreground: 240 5% 60%;
-  --border: 240 5% 15%;
+  /* Dark Mode: Deep Midnight & Electric Blue */
+  --background: 222 47% 4%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 6%;
+  --primary: 217 91% 60%; /* Vibrant Electric Blue */
+  --accent: 217 91% 60%;
+  --muted: 217 32% 12%;
+  --muted-foreground: 215 20% 65%;
+  --border: 217 32% 15%;
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground antialiased font-mono;
-    /* Small square grid background */
+    @apply bg-background text-foreground antialiased font-sans;
+    /* Professional Blueprint Grid */
     background-image: 
-      linear-gradient(hsla(142, 100%, 50%, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsla(142, 100%, 50%, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+      linear-gradient(hsla(217, 91%, 60%, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(217, 91%, 60%, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }
 
 @layer utilities {
   .animate-ticker {
-    animation: ticker 35s linear infinite;
+    animation: ticker 45s linear infinite;
   }
   @keyframes ticker {
     0% { transform: translateX(0); }
@@ -69,13 +71,13 @@
     50% { border-color: hsl(var(--primary)) }
   }
 
-  /* Profile Picture Hover: Grayscale to Color */
   .profile-hover-effect {
-    filter: grayscale(100%);
-    transition: filter 0.5s ease, transform 0.3s ease;
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .profile-hover-effect:hover {
-    filter: grayscale(0%);
-    transform: scale(1.02);
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.03);
+    box-shadow: 0 0 30px hsla(var(--primary), 0.2);
   }
 }
