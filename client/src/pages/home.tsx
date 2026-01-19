@@ -36,7 +36,7 @@ const projects = [
     title: "Pairs Trading Framework",
     description: "A comprehensive backtesting engine for statistical arbitrage that achieved an 18.02% annualized return using cointegration and Z-score signals.",
     methods: ["Stats Arb", "Cointegration", "Backtesting"],
-    github: "https://github.com/Harshit-0307/QuantLab", // Updated to specific repo
+    github: "https://github.com/Harshit-0307/Pairs-Trading", // Updated to specific repo
   },
   {
     title: "QuantLab: Strategy Research",
@@ -62,18 +62,18 @@ const blogPosts = [
   {
     title: "Volatility Forecasting with GARCH Models",
     excerpt: "Implementing Generalized Autoregressive Conditional Heteroskedasticity models to predict market risk and set dynamic stop-losses.",
-    date: "Jan 12, 2026",
+    date: "Oct 22, 2024",
     readTime: "6 min read",
     tag: "Time Series",
-    url: "#" // Add your blog link here
+    url: "https://medium.com/@sheikh.sahil12299/mastering-volatility-forecasting-with-garch-models-a-deep-dive-into-financial-market-dynamics-8df73c037b7e" // Add your blog link here
   },
   {
     title: "Machine Learning in HFT Environments",
     excerpt: "Exploring low-latency feature engineering and the trade-offs between model complexity and execution speed in high-frequency trading.",
-    date: "Jan 05, 2026",
+    date: "June 05, 2022",
     readTime: "10 min read",
     tag: "ML / HFT",
-    url: "#" // Add your blog link here
+    url: "https://www.sciencedirect.com/science/article/abs/pii/S0165188922001439" // Add your blog link here
   },
   {
     title: "Modern Portfolio Theory vs. Black-Litterman",
@@ -81,7 +81,7 @@ const blogPosts = [
     date: "Dec 28, 2025",
     readTime: "8 min read",
     tag: "Portfolio MGMT",
-    url: "#" // Add your blog link here
+    url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://tesi.luiss.it/29991/1/704501_MAESTRIPIERI_SIMONE.pdf&ved=2ahUKEwit84CfpZiSAxXriq8BHehwLO8QFnoECBsQAQ&usg=AOvVaw0PuWIRsDXfQAjHB1O4gBoo" // Add your blog link here
   },
   {
     title: "The Role of Factor Models in Alpha Generation",
@@ -89,7 +89,7 @@ const blogPosts = [
     date: "Dec 15, 2025",
     readTime: "7 min read",
     tag: "Alpha Research",
-    url: "#" // Add your blog link here
+    url: "https://www.investopedia.com/terms/a/alpha.asp" // Add your blog link here
   }
 ];
 
