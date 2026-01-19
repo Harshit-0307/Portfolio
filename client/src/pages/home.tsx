@@ -277,28 +277,34 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {blogPosts.map((post) => (
-              <a key={post.title} href={post.url} className="block group">
-                <Card className="h-full bg-background border-border rounded-none group-hover:border-primary transition-all flex flex-col shadow-sm">
-                  <CardHeader>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-[10px] font-bold text-primary tracking-widest uppercase bg-primary/10 px-2 py-1">{post.tag}</span>
-                      <span className="text-[10px] text-muted-foreground font-mono">{post.date}</span>
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">{post.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <p className="text-xs text-muted-foreground mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
-                    <div className="flex justify-between items-center mt-auto pt-4 border-t border-border/50">
-                      <span className="text-[10px] text-muted-foreground font-mono italic">{post.readTime}</span>
-                      <div className="text-[10px] font-black tracking-widest uppercase group-hover:translate-x-1 transition-transform flex items-center gap-2">
-                        READ_LOG <ExternalLink size={10} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </a>
-            ))}
+          {blogPosts.map((post) => (
+  <a 
+    key={post.title} 
+    href={post.url} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="block group"
+  >
+    <Card className="h-full bg-background border-border rounded-none group-hover:border-primary transition-all flex flex-col shadow-sm">
+      <CardHeader>
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-[10px] font-bold text-primary tracking-widest uppercase bg-primary/10 px-2 py-1">{post.tag}</span>
+          <span className="text-[10px] text-muted-foreground font-mono">{post.date}</span>
+        </div>
+        <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">{post.title}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1">
+        <p className="text-xs text-muted-foreground mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
+        <div className="flex justify-between items-center mt-auto pt-4 border-t border-border/50">
+          <span className="text-[10px] text-muted-foreground font-mono italic">{post.readTime}</span>
+          <div className="text-[10px] font-black tracking-widest uppercase group-hover:translate-x-1 transition-transform flex items-center gap-2">
+            READ_LOG <ExternalLink size={10} />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </a>
+))}
           </div>
         </section>
 
